@@ -1,6 +1,6 @@
-#ifndef _LinearStack_H
-#define _LinearStack_H
-#define StackSize 100
+#ifndef _LinearStack1_H
+#define _LinearStack1_H
+#define StackSize 10
 typedef int ElementType;
 typedef struct 
 {
