@@ -1,5 +1,5 @@
 #include<stdlib.h>
-#include"Linear.h"
+#include"LinkedList.h"
 
 struct Node
 {

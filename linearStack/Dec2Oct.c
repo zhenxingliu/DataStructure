@@ -16,6 +16,7 @@ void Coversion(int N){
         PopStack(top,&e);
         printf("%d",e);
     }
+    printf("\n");
 }
 
 int main(int argc, char const *argv[])

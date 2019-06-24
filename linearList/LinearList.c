@@ -1,57 +1,66 @@
-/*
-以顺序存储（内存）的线性表的基本数据结构，C语言实现
-ADT
- */
-#define MAXSIZE 20 //数组最大长充
-typedef int ElemType; //数据元素
-typedef struct LinearList//存储的数据结构
-{
-    ElemType data[MAXSIZE]; //线性表的存储位置，
-    int length; //线性表的长度
-}SqList;
-
+#include "LinearList.h"
 //获取元素操作的返回值
 #define OK 1
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-typedef int Status;
-
 
 Status InitList(SqList *L)
 {
-    return OK;
+    L->length = 0;
 }
 
 Status ListEmpty(SqList L){
-    return OK;
+    if(L.length==0)
+        return TRUE;
+    else
+        return FALSE;
 }
 
-Status ClearList(SqList L)
+
+Status ClearList(SqList *L)
 {
-    return OK;
+    L->length = 0;
 }
 
-//获取操作
+//获取操作O(1)
 Status GetElem(SqList L,int i,ElemType *e){
+    //如果线性表为空或读取元素位置不正确，返回错误，否则取元素并返回正确。
     if(L.length==0 || i<1 || i>L.length)
         return ERROR;
     *e = L.data[i-1];
     return OK;
 }
 
+//查找操作 返回是的元素在线性表中的序号O(n)
+int LocateElem(SqList L, ElemType e)
+{
+    int k;
+    int i = 0;
+    for(k=0;k<L.length;k++)
+    {
+        if(L.data[k]==e){
+            i = k+1;
+            break;
+        }
+    }
+    return i;//搜索到返回队列中的顺序，没有搜索到返回0
+}
 
-//插入操作
+//插入操作 O(n)
 Status ListInsert(SqList L,int i,ElemType e){
     int k;
+    //如果表满就返回错误，
     if(L.length==MAXSIZE) //线性表满
     {
         return ERROR;
     }
+    //插入位置不对，返回错误
     if(i<1 || i>L.length)//需要插入的位置不对
     {
         return ERROR;
     }
+    //执行插入，插入时需要将从插入位置开始都向后移动一位。执行为O(n)
     if(i<L.length){
         //插入的位置不在队尾需要将所有从最后到i之间的元素都向后移动一个位置
         for(k=L.length-1;k>=i-1;k--){
@@ -64,7 +73,7 @@ Status ListInsert(SqList L,int i,ElemType e){
 }
 
 
-//删除操作
+//删除操作 O(n)
 Status ListDelete(SqList L,int i,ElemType  *e)
 {
     if(L.length==0)
