@@ -1,12 +1,12 @@
 include ../Makefile.header
 
-OBJS = OrderQueue.o
+OBJS = OrderQueue.o LinkedQueue.o
 
 .PHONY = all clean
 all:$(OBJS)
 
-OrderQueue.o:OrderQueue.h OrderQueue.c
-	$(CC) -c OrderQueue.c -o OrderQueue.o 
+.c.o:
+	@$(CC) -c -o $@ $<
 
 clean:
 	- rm -f $(OBJS)

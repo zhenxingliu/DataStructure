@@ -2,7 +2,7 @@ include Makefile.header
 
 .PHONY=clean all linearList/linearList.o linearStack/linearStack.o linearQueue/linearQueue.o
 
-all:linearList/linearList.o linearStack/linearStack.o
+all:linearList/linearList.o linearStack/linearStack.o linearQueue/linearQueue.o
 
 linearList/linearList.o:
 	@make -C linearList
